@@ -14,9 +14,18 @@ const server = http.createServer((req, res) => {
     res.writeHead(200, { "Content-Type": "text/plain" });
     res.end(output);
   } else if (path == "/write") {
-    output = status;
-    res.writeHead(200, { "Content-Type": "text/plain" });
-    res.end("Status set as: " + output);
+    if (status) {
+      // Update status if provided
+      output = status;
+      res.writeHead(200, { "Content-Type": "text/plain" });
+      res.end("Status set as: " + output);
+    } else {
+      res.writeHead(400, { "Content-Type": "text/plain" });
+      res.end("Error: 'status' parameter is missing");
+    }
+  } else {
+    res.writeHead(404, { "Content-Type": "text/plain" });
+    res.end("Error: Endpoint not found");
   }
 });
 
