@@ -5,7 +5,7 @@ http.createServer(function (req, res) {
     // res.end();
 
     let output = "url.parse(req.url, true).query";
-    res.write('LLE');
+    res.write(output);
     res.end();
     
 
