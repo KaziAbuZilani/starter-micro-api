@@ -4,14 +4,9 @@ http.createServer(function (req, res) {
     // res.write('On');
     // res.end();
 
-    let output = "OFF";
-    if (req.url === '/get') {
-      res.write(output);
-      res.end();
-    } else if (req.url === '/write') {
-      const status = url.parse(req.url, true).query;
-      output = status
-      res.write("Status set as" + output);
-      res.end();
+    let output = url.parse(req.url, true).query;
+    res.write(output);
+    res.end();
+    
 
 }).listen(process.env.PORT || 3000);
